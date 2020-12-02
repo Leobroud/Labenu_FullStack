@@ -1,5 +1,5 @@
 export const LoginPage = (history) => {
-  history.push('/login');  
+  history.push('/');  
 }
 
 export const SignupPage = (history) => {

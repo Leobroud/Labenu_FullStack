@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 import React from 'react';
 
 import Login from '../screens/login/Login'
@@ -6,11 +6,11 @@ import Signup from '../screens/signup/Signup'
 import InsertImage from '../screens/insertImage/InsertImage'
 import ViewImage from '../screens/viewImage/ViewImage'
 
-const Router = () => {
+function Router () {
   return(
     <BrowserRouter>
       <Switch>
-        <Route exact path="/login">
+        <Route exact path="/">
           <Login/>
         </Route>
         <Route exact path="/signup">
