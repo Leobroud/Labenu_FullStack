@@ -40,7 +40,8 @@ export const LoginForm = () => {
 
   return (
     <Box my={8} textAlign='left'>
-      <FormControl onSubmit={handleSubmittion}>
+      <form onSubmit={handleSubmittion}>
+      <FormControl >
         <FormLabel>Email address</FormLabel>
         <Input autoComplete="off" name="email" onChange={handleInputChange} type="email" placeholder="Enter your email address" size="md" />
       </FormControl>
@@ -57,6 +58,7 @@ export const LoginForm = () => {
             </Box>
         </Stack>
         <Button type="submit" onClick={handleLogin} variantColor={VARIANT_COLOR}  width='full' mt={4}>Log In</Button>
+      </form>
     </Box>
 
   )
