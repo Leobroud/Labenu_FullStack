@@ -1,13 +1,18 @@
 import React from 'react'
 import Router from './router/Router'
 
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider, ThemeProvider, theme, CSSReset  } from "@chakra-ui/react"
+
 
 const App = () => {
   return (
-    <ChakraProvider>
-      <Router/>
-    </ChakraProvider>
+    <ThemeProvider theme={theme}>
+      <ChakraProvider>
+        <CSSReset />
+        <Router/>
+      </ChakraProvider>
+    </ThemeProvider>
+    
   );
 }
 
