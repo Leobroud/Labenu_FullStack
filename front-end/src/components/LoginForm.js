@@ -57,21 +57,9 @@ export const LoginForm = () => {
               <Link color={`${VARIANT_COLOR}.500`}>Forgot your password?</Link>
             </Box>
         </Stack>
-        <Button type="submit" onClick={handleLogin} variantColor={VARIANT_COLOR}  width='full' mt={4}>Log In</Button>
+        <Button type="submit" onClick={handleLogin} variantColor={VARIANT_COLOR}  width='full' mt={4}>Sign In</Button>
       </form>
     </Box>
 
   )
 }
-
-/* <Container maxW="xl" centerContent bgImage="(../image/fundo)" >
-<Box h="300px"   padding="4"  maxW="3x1" marginTop='100px' overflow="hidden"  boxShadow="lg">
-  <form onSubmit={handleSubmittion} autoComplete="off" >
-    <Stack spacing={4} w="300px" >
-      <Input name="password" onChange={handleInputChange} type="password" placeholder="Digite a Senha" size="md" />
-      <Button type="submit" size="md" onClick={handleLogin}>Entrar</Button>
-      <Button size="sm" variant="link">Crie uma conta</Button>
-    </Stack>
-  </form>
-</Box>
-</Container> */
