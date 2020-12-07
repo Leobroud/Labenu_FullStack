@@ -16,7 +16,7 @@ class UserController {
       existsOrError(nickname, 'nickname is missing')
       existsOrError(password, 'password is missing')
 
-      const userFromDB = await knex('Banco de dados aqui').where({ email }).first()
+      const userFromDB = await knex('USUARIOS').where({ email }).first()
       notExistsOrError(userFromDB, 'email already exists')
 
     } catch (error) {
@@ -27,7 +27,14 @@ class UserController {
     const hashPassword = await hash(password)
 
     try {
-      await knex('banco de dados aqui').insert({ id, name, email, nickname, hashPassword })
+      await knex('USUARIOS')
+      .insert({ 
+        id, 
+        name, 
+        email, 
+        nickname, 
+        hashPassword 
+      })
 
       const token: string = generateToken({
         id
@@ -58,7 +65,7 @@ class UserController {
         throw new Error('"email" and "password" must be provided')
       }
 
-      const queryResult: any = await knex("banco de dados aqui")
+      const queryResult: any = await knex('USUARIOS')
         .select("*")
         .where({ email })
 

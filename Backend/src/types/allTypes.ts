@@ -10,3 +10,14 @@ export type User = {
   password: string
 }
 
+export type Image = {
+  id: string,
+  subtitle: string,
+  author: string,
+  date: Date,
+  file: string,
+  tags: string,
+  collection: string,
+  userId: string
+}
+
