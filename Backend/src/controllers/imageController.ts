@@ -30,7 +30,7 @@ class imageController {
           user_id: tokenData.id
         })
 
-      res.status(201).send({ message })
+      res.status(201).send({ message, id })
 
     } catch (error) {
       let message = error.sqlMessage || error.message

@@ -33,7 +33,7 @@ class UserController {
         name, 
         email, 
         nickname, 
-        hashPassword 
+        password: hashPassword 
       })
 
       const token: string = generateToken({

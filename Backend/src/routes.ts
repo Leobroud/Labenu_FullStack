@@ -5,7 +5,7 @@ import UserController from './controllers/userController'
 const routes = Router()
 
 
-routes.post('/user/login', UserController.login)
+routes.post('/user', UserController.login)
 routes.post('/user/signup', UserController.create)
 routes.post('/image', imageController.create)
 routes.get('/image/:id', imageController.show)
