@@ -32,7 +32,7 @@ export const LoginForm = () => {
     axios
       .post('http://localhost:3003/user', form)
       .then(response => {
-        history.push("/view")
+        history.push("/insert")
       }).catch(error => {
         console.log(error)
       })
