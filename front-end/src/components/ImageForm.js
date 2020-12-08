@@ -34,7 +34,7 @@ export const ImageForm = () => {
 
   const handleImageCreate = () => {
     axios
-      .post('http://localhost:3003/image/create', form)
+      .post('http://localhost:3003/image', form)
       .then(response => {})
       .catch(error => {
         console.log(error)
