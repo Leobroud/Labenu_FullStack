@@ -30,7 +30,7 @@ export const LoginForm = () => {
 
   const handleLogin = () => {
     axios
-      .post("Colocar a URL", form)
+      .post('http://localhost:3003/user', form)
       .then(response => {
         history.push("/view")
       }).catch(error => {
@@ -40,14 +40,28 @@ export const LoginForm = () => {
 
   return (
     <Box my={8} textAlign='left'>
-      <form onSubmit={handleSubmittion}>
-      <FormControl >
+      <FormControl onSubmit={handleSubmittion}>
         <FormLabel>Email address</FormLabel>
-        <Input autoComplete="off" name="email" onChange={handleInputChange} type="email" placeholder="Enter your email address" size="md" />
+        <Input 
+        autoComplete="off" 
+        name="email" 
+        value={form.email} 
+        onChange={handleInputChange} 
+        type="email" 
+        placeholder="Enter your email address" 
+        size="md" 
+        />
       </FormControl>
       <FormControl mt={4}>
         <FormLabel>Password</FormLabel>
-        <Input name="password" onChange={handleInputChange} type="password" placeholder="Enter your password" size="md" />
+        <Input 
+        name="password" 
+        value={form.password} 
+        onChange={handleInputChange} 
+        type="password" 
+        placeholder="Enter your password" 
+        size="md" 
+        />
       </FormControl>
       <Stack isInline justifyContent='space-between' mt={4}>
             <Box>
@@ -57,8 +71,13 @@ export const LoginForm = () => {
               <Link color={`${VARIANT_COLOR}.500`}>Forgot your password?</Link>
             </Box>
         </Stack>
-        <Button type="submit" onClick={handleLogin} variantColor={VARIANT_COLOR}  width='full' mt={4}>Sign In</Button>
-      </form>
+        <Button 
+        type="submit" 
+        onClick={handleLogin} 
+        variantColor={VARIANT_COLOR}  
+        width='full' 
+        mt={4}>Sign In
+        </Button>
     </Box>
 
   )

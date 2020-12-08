@@ -34,7 +34,7 @@ const SignupForm = () => {
 
   const handleSignUp = () => {
     axios
-      .post(" Colocar a URL", form)
+      .post('http://localhost:3003/user/signup', form)
       .then(response => {
         history.push("/view")
       }).catch(error => {
@@ -42,29 +42,58 @@ const SignupForm = () => {
       })
   }
 
-
-
-
   return (
-<Box my={8} textAlign='left'>
-      <FormControl onSubmit={handleSubmittion}>
+  <Box my={8} textAlign='left'>
+      <FormControl onSubmit={handleSubmittion} >
         <FormLabel>Name</FormLabel>
-        <Input autoComplete="off" name="name" onChange={handleInputChange} type="text" placeholder="Enter your name"/>
+        <Input 
+        autoComplete="off" 
+        name="name" 
+        value={form.name} 
+        onChange={handleInputChange} 
+        type="text" 
+        placeholder="Enter your name"
+        />
       </FormControl>
       <FormControl mt={4} onSubmit={handleSubmittion}>
         <FormLabel>Nickname</FormLabel>
-        <Input name="nickname" onChange={handleInputChange} type="text" placeholder="Enter your nickname"/>
+        <Input 
+        name="nickname" 
+        value={form.nickname} 
+        onChange={handleInputChange} 
+        type="text" 
+        placeholder="Enter your nickname"
+        />
       </FormControl>
       <FormControl mt={4} onSubmit={handleSubmittion}>
         <FormLabel>Email address</FormLabel>
-        <Input autoComplete="off" name="email" onChange={handleInputChange} type="email" placeholder="Enter your email address"/>
+        <Input 
+        autoComplete="off" 
+        value={form.email} 
+        name="email" 
+        onChange={handleInputChange} 
+        type="email" 
+        placeholder="Enter your email address"
+        />
       </FormControl>
       <FormControl mt={4} onSubmit={handleSubmittion}>
         <FormLabel>Password</FormLabel>
-        <Input name="password" onChange={handleInputChange} type="password" placeholder="Enter your password"/>
+        <Input 
+        name="password" 
+        value={form.password} 
+        onChange={handleInputChange} 
+        type="password" 
+        placeholder="Enter your password"
+        />
       </FormControl>
-        <Button type="submit" onClick={handleSignUp} variantColor={VARIANT_COLOR}  width='full' mt={4}>Create</Button>
-    </Box>
+        <Button 
+        type="submit" 
+        onClick={handleSignUp} 
+        variantColor={VARIANT_COLOR}  
+        width='full' 
+        mt={4}>Create
+        </Button>
+  </Box>
   )
 }
 
