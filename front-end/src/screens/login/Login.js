@@ -1,10 +1,11 @@
-import { Flex, Box } from "@chakra-ui/react"
+import { Flex, Box} from "@chakra-ui/react"
 import {ThemeSelector} from '../../components/ThemeSelector'
-import {LoginHeader} from '../../components/LoginHeader'
+import {LoginHeader, LoginFooter} from '../../components/LoginHeaderFooter'
 import {LoginForm} from '../../components/LoginForm'
 
 
 const Login = () => {
+  
   return (
     <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
       <Box 
@@ -20,6 +21,7 @@ const Login = () => {
         <Box p={4}>
           <LoginHeader/>
           <LoginForm />
+          <LoginFooter/>
         </Box>
       </Box>
     </Flex>

@@ -4,12 +4,13 @@ import { useHistory } from 'react-router-dom';
 import useForm from '../hooks/useForm';
 import { Input, Box, Stack, FormLabel } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
-
+import { useProtect } from '../hooks/useProtect'
 
 const VARIANT_COLOR = 'teal'
 
 
 export const ImageForm = () => {
+  useProtect()
   const history = useHistory()
 
   const {form, onChange, resetState}  = useForm({

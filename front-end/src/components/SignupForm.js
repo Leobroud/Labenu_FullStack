@@ -2,8 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import useForm from '../hooks/useForm';
-import { Input, Box, Stack, FormLabel} from "@chakra-ui/react"
+import { Input, Box, Stack, FormLabel, Text, Link} from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
+import { LoginPage } from '../router/Pages';
 
 const VARIANT_COLOR = 'teal'
 
@@ -53,7 +54,8 @@ const SignupForm = () => {
         name="name" 
         value={form.name} 
         onChange={handleInputChange} 
-        type="text" 
+        type="text"
+        required 
         placeholder="Enter your name"
         />
       </Stack>
@@ -63,7 +65,8 @@ const SignupForm = () => {
         name="nickname" 
         value={form.nickname} 
         onChange={handleInputChange} 
-        type="text" 
+        type="text"
+        required 
         placeholder="Enter your nickname"
         />
       </Stack>
@@ -73,6 +76,7 @@ const SignupForm = () => {
         autoComplete="off" 
         value={form.email} 
         name="email" 
+        required
         onChange={handleInputChange} 
         type="email" 
         placeholder="Enter your email address"
@@ -84,7 +88,8 @@ const SignupForm = () => {
         name="password" 
         value={form.password} 
         onChange={handleInputChange} 
-        type="password" 
+        type="password"
+        required 
         placeholder="Enter your password"
         />
       </Stack>
@@ -96,6 +101,9 @@ const SignupForm = () => {
         mt={4}>Create
         </Button>
     </form>
+    <Text paddingTop={1} textAlign='center'>
+      Already have an account? <Link color={`${VARIANT_COLOR}.500`} onClick={() => LoginPage(history)} >Login here</Link>
+    </Text>
   </Box>
   )
 }

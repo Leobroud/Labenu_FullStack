@@ -1,5 +1,5 @@
 import { Flex, Box, Heading } from "@chakra-ui/react"
-import {ThemeSelector} from '../../components/ThemeSelector'
+import { GroupButton} from '../../components/ThemeSelector'
 import SignupForm from '../../components/SignupForm'
 
 
@@ -14,10 +14,10 @@ const Signup = () => {
         borderRadius={4}
         textAlign='center'
         boxShadow='lg'
-      >
-        <ThemeSelector />
+      > 
+        <GroupButton/>
         <Box p={4}>
-        <Heading>Create Your Account</Heading>
+        <Heading>Let's Get Started!</Heading>
           <SignupForm />
         </Box>
       </Box>

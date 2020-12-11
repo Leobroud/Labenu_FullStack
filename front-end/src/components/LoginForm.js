@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import useForm from '../hooks/useForm';
-import { Input, Stack, Box, FormLabel, Link, Checkbox} from "@chakra-ui/react"
-import { Button } from "@chakra-ui/react"
+import { Input, Stack, Box, FormLabel, Link, Checkbox, Button} from "@chakra-ui/react"
+
 
 
 const VARIANT_COLOR = 'teal'
 
-
 export const LoginForm = () => {
   const history = useHistory()
+
+  useEffect(() => {
+    const token = window.localStorage.getItem("token")
+
+    if (token) {
+      history.push('/view')
+    }
+  }, [history])
 
   const {form, onChange, resetState}  = useForm({
     email:"",
@@ -52,7 +59,7 @@ export const LoginForm = () => {
         type="email"
         required
         placeholder="Enter your email address" 
-        size="md" 
+        size="md"
         />
       </Stack>
       <Stack mt={4}>
@@ -72,7 +79,7 @@ export const LoginForm = () => {
               <Checkbox>Remember Me</Checkbox>
             </Box>
             <Box>
-              <Link color={`${VARIANT_COLOR}.500`}>Forgot your password?</Link>
+              <Link color={`${VARIANT_COLOR}.500`}>Forgot password?</Link>
             </Box>
         </Stack>
         <Button 
@@ -80,7 +87,7 @@ export const LoginForm = () => {
         onClick={handleLogin} 
         variantColor={VARIANT_COLOR}  
         width='full' 
-        mt={4}>Sign In
+        mt={4}>LogIn
         </Button>
       </form>
     </Box>
