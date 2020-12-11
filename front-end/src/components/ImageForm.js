@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import useForm from '../hooks/useForm';
-import { Input, Box, FormControl, FormLabel } from "@chakra-ui/react"
+import { Input, Box, Stack, FormLabel } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
 
 
@@ -33,8 +33,13 @@ export const ImageForm = () => {
   }
 
   const handleImageCreate = () => {
+    const token = window.localStorage.getItem("token")
     axios
-      .post('http://localhost:3003/image', form)
+      .post('http://localhost:3003/image', form, {
+        headers:{
+          Authorization: token
+        }
+      })
       .then(response => {})
       .catch(error => {
         console.log(error)
@@ -43,7 +48,8 @@ export const ImageForm = () => {
 
   return (
     <Box my={8} textAlign='left'>
-      <FormControl onSubmit={handleSubmittion}>
+      <form onSubmit={handleSubmittion}>
+      <Stack>
         <FormLabel>Subtitle</FormLabel>
         <Input 
         autoComplete="off" 
@@ -55,8 +61,8 @@ export const ImageForm = () => {
         placeholder="Enter your subtitle" 
         size="md" 
         />
-      </FormControl>
-      <FormControl mt={4}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>Author</FormLabel>
         <Input 
         name="author" 
@@ -67,8 +73,8 @@ export const ImageForm = () => {
         placeholder="Enter your author" 
         size="md" 
         />
-      </FormControl>
-      <FormControl mt={4}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>Date</FormLabel>
         <Input 
         name="date" 
@@ -79,8 +85,8 @@ export const ImageForm = () => {
         placeholder="Enter your date" 
         size="md" 
         />
-      </FormControl>
-      <FormControl mt={4}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>File</FormLabel>
         <Input 
         name="file" 
@@ -91,8 +97,8 @@ export const ImageForm = () => {
         placeholder="Enter your file" 
         size="md" 
         />
-      </FormControl>
-      <FormControl mt={4}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>Tags</FormLabel>
         <Input 
         name="tags" 
@@ -103,8 +109,8 @@ export const ImageForm = () => {
         placeholder="Enter your tag" 
         size="md" 
         />
-      </FormControl>
-      <FormControl mt={4}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>Collection</FormLabel>
         <Input 
         name="collection" 
@@ -115,7 +121,7 @@ export const ImageForm = () => {
         placeholder="Enter your collection" 
         size="md" 
         />
-      </FormControl>
+      </Stack>
         <Button 
         type="submit" 
         onClick={handleImageCreate} 
@@ -128,6 +134,7 @@ export const ImageForm = () => {
         variantColor={VARIANT_COLOR}
         mt={4}>View your images
         </Button>
+      </form>
     </Box>
 
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import useForm from '../hooks/useForm';
-import { Input, Stack, Box, FormControl, FormLabel, Link, Checkbox} from "@chakra-ui/react"
+import { Input, Stack, Box, FormLabel, Link, Checkbox} from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
 
 
@@ -32,7 +32,8 @@ export const LoginForm = () => {
     axios
       .post('http://localhost:3003/user', form)
       .then(response => {
-        history.push("/insert")
+        localStorage.setItem("token", response.data.token)
+        history.push("/view")
       }).catch(error => {
         console.log(error)
       })
@@ -40,29 +41,32 @@ export const LoginForm = () => {
 
   return (
     <Box my={8} textAlign='left'>
-      <FormControl onSubmit={handleSubmittion}>
+      <form onSubmit={handleSubmittion}>
+      <Stack >
         <FormLabel>Email address</FormLabel>
         <Input 
         autoComplete="off" 
         name="email" 
         value={form.email} 
         onChange={handleInputChange} 
-        type="email" 
+        type="email"
+        required
         placeholder="Enter your email address" 
         size="md" 
         />
-      </FormControl>
-      <FormControl mt={4}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>Password</FormLabel>
         <Input 
         name="password" 
         value={form.password} 
         onChange={handleInputChange} 
-        type="password" 
+        type="password"
+        required
         placeholder="Enter your password" 
         size="md" 
         />
-      </FormControl>
+      </Stack>
       <Stack isInline justifyContent='space-between' mt={4}>
             <Box>
               <Checkbox>Remember Me</Checkbox>
@@ -78,6 +82,7 @@ export const LoginForm = () => {
         width='full' 
         mt={4}>Sign In
         </Button>
+      </form>
     </Box>
 
   )

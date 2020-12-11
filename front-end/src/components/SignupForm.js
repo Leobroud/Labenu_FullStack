@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import useForm from '../hooks/useForm';
-import { Input, Box, FormControl, FormLabel} from "@chakra-ui/react"
+import { Input, Box, Stack, FormLabel} from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
 
 const VARIANT_COLOR = 'teal'
@@ -36,6 +36,7 @@ const SignupForm = () => {
     axios
       .post('http://localhost:3003/user/signup', form)
       .then(response => {
+        localStorage.setItem("token", response.data.token)
         history.push("/view")
       }).catch(error => {
         console.log(error)
@@ -44,7 +45,8 @@ const SignupForm = () => {
 
   return (
   <Box my={8} textAlign='left'>
-      <FormControl onSubmit={handleSubmittion} >
+    <form onSubmit={handleSubmittion}>
+    <Stack>
         <FormLabel>Name</FormLabel>
         <Input 
         autoComplete="off" 
@@ -54,8 +56,8 @@ const SignupForm = () => {
         type="text" 
         placeholder="Enter your name"
         />
-      </FormControl>
-      <FormControl mt={4} onSubmit={handleSubmittion}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>Nickname</FormLabel>
         <Input 
         name="nickname" 
@@ -64,8 +66,8 @@ const SignupForm = () => {
         type="text" 
         placeholder="Enter your nickname"
         />
-      </FormControl>
-      <FormControl mt={4} onSubmit={handleSubmittion}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>Email address</FormLabel>
         <Input 
         autoComplete="off" 
@@ -75,8 +77,8 @@ const SignupForm = () => {
         type="email" 
         placeholder="Enter your email address"
         />
-      </FormControl>
-      <FormControl mt={4} onSubmit={handleSubmittion}>
+      </Stack>
+      <Stack mt={4}>
         <FormLabel>Password</FormLabel>
         <Input 
         name="password" 
@@ -85,7 +87,7 @@ const SignupForm = () => {
         type="password" 
         placeholder="Enter your password"
         />
-      </FormControl>
+      </Stack>
         <Button 
         type="submit" 
         onClick={handleSignUp} 
@@ -93,6 +95,7 @@ const SignupForm = () => {
         width='full' 
         mt={4}>Create
         </Button>
+    </form>
   </Box>
   )
 }
