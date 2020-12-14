@@ -7,7 +7,8 @@ const routes = Router()
 
 routes.post('/user', UserController.login)
 routes.post('/user/signup', UserController.create)
-routes.post('/image', imageController.create)
+routes.post('/image/create', imageController.create)
 routes.get('/image/:id', imageController.show)
+routes.get('/image', imageController.index)
 
 export default routes
