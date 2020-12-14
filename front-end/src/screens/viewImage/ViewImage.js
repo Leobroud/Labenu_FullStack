@@ -1,6 +1,9 @@
+import {AllImage} from '../../components/Image'
+
+
 const ViewImage = () => {
   return (
-    <div>ViewImage</div>
+    <AllImage/>
   )
 }
 
