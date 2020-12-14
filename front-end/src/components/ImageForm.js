@@ -36,7 +36,7 @@ export const ImageForm = () => {
   const handleImageCreate = () => {
     const token = window.localStorage.getItem("token")
     axios
-      .post('http://localhost:3003/image', form, {
+      .post('http://localhost:3003/image/create', form, {
         headers:{
           Authorization: token
         }
