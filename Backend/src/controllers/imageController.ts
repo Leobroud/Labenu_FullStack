@@ -5,6 +5,18 @@ import { AuthenticationData, Image } from '../types/allTypes'
 
 class imageController {
 
+  static async index(req: Request, res: Response) {
+
+    try { 
+      const image = await knex('IMAGES').select('*')
+
+      return res.status(200).json(image)
+
+    }catch(error) {
+      return res.status(500).send(error)
+    }
+  }
+
   static async create(req: Request, res: Response) {
 
     try {
