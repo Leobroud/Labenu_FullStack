@@ -37,7 +37,7 @@ export const LoginForm = () => {
 
   const handleLogin = () => {
     axios
-      .post('http://localhost:3003/user', form)
+      .post('http://localhost:3003/user/login', form)
       .then(response => {
         localStorage.setItem("token", response.data.token)
         history.push("/view")

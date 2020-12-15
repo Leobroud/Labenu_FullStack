@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Badge, Img } from "@chakra-ui/react"
+import { Box, Badge, Img, Grid } from "@chakra-ui/react"
 
 
 export const AllImage = () => {
 
   const [ image, setImage] = useState([])
-
   const getImage = async () => {
-
-    await axios.get('https://backend-fullstack-labenu.herokuapp.com/image/all', {  
-    headers: {
-      Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmNGVhODg2LWNlMTctNGJkZC04YmZlLTY5ZDEzNmUyMjhjMyIsImlhdCI6MTYwNzk3NzY0OSwiZXhwIjoxNjA3OTc4MjQ5fQ.z7rhqgejCPKINJPG87PgAUkXCfw0HQ9Bv2QwT8TXnEw'
-    }
-    }
-    )
+  
+    const token = window.localStorage.getItem("token")
+   
+    await axios.get('http://localhost:3003/image/all', {  
+      headers: {
+        Authorization: token
+      }
+    })
     .then(response => {
+      console.log('entrei aqui 5')
       console.log(response.data)
+      console.log('entrei aqui 6')
       setImage(response.data)
     })
-    .catch(error =>{
-
-    })
+    .catch(error =>{console.log(error)})
   }
 
   useEffect(() => {
@@ -29,15 +29,15 @@ export const AllImage = () => {
   }, [])
   
   return(
-    <Box >
+    <Grid templateColumns="repeat(3, 1fr)">
       {image.map(img => {
         return(
-          <Box align="center" m='1' p="4" maxW="lg" borderWidth="1px" borderRadius="lg" key={img.id}>
+          <Box align="center" p="4" mt="2" maxW="md" borderWidth="1px" borderRadius="lg" key={img.id}>
               <Badge borderRadius="full" px="2" colorScheme="teal">
                 {img.subtitle}
               </Badge>
               <Img src="(img.file)" mt="2" align="center"/>
-                {/* {img.file} */}
+                {img.file}
               <Box align="start" mt="2">
                 Author: {img.author}
               </Box>
@@ -47,6 +47,6 @@ export const AllImage = () => {
             </Box>
         )
       })}      
-    </Box>
+    </Grid>
  )
 }
