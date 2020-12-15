@@ -9,29 +9,9 @@ class imageController {
 
     try { 
 
-      let message = "Success!"
-
-      const queryResult: any = await knex('IMAGES')
-        .select("*")
-
-        if (!queryResult[0]) {
-          res.statusCode = 404
-          message = "Image not found"
-          throw new Error(message)
-        }
-  
-        const image: Image = {
-          id: queryResult[0].id,
-          subtitle: queryResult[0].subtitle,
-          author: queryResult[0].author,
-          date: queryResult[0].date,
-          file: queryResult[0].file,
-          tags: queryResult[0].tags,
-          collection: queryResult[0].collection,
-          userId: queryResult[0].user_id,
-        }
-  
-        res.status(200).send({ message, image })
+      const image = await knex('IMAGES').select('*')
+      console.log(image)
+      return res.status(200).json(image)
 
     }catch(error) {
       
