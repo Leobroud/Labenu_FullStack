@@ -93,7 +93,7 @@ export const ImageForm = () => {
         name="file" 
         value={form.file} 
         onChange={handleInputChange} 
-        type="text"
+        type="file"
         required 
         placeholder="Enter your file" 
         size="md" 
