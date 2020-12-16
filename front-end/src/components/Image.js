@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Badge, Img, Grid } from "@chakra-ui/react"
+import { Box, Badge, Image, Grid } from "@chakra-ui/react"
 
 
 export const AllImage = () => {
 
-  const [ image, setImage] = useState([])
+  const [ image, setImage ] = useState([])
   const getImage = async () => {
   
     const token = window.localStorage.getItem("token")
@@ -16,12 +16,10 @@ export const AllImage = () => {
       }
     })
     .then(response => {
-      console.log('entrei aqui 5')
-      console.log(response.data)
-      console.log('entrei aqui 6')
       setImage(response.data)
     })
-    .catch(error =>{console.log(error)})
+    .catch(error => { 
+      console.log(error)})
   }
 
   useEffect(() => {
@@ -36,8 +34,7 @@ export const AllImage = () => {
               <Badge borderRadius="full" px="2" colorScheme="teal">
                 {img.subtitle}
               </Badge>
-              <Img src="(img.file)" mt="2" align="center"/>
-                {img.file}
+              <Image src={img.file} mt="2" align="center"/>
               <Box align="start" mt="2">
                 Author: {img.author}
               </Box>
