@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import useForm from '../hooks/useForm';
-import { Input, Box, Stack, FormLabel } from "@chakra-ui/react"
+import { Input, Box, FormLabel, FormControl } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
 import { useProtect } from '../hooks/useProtect'
 
@@ -13,7 +13,7 @@ export const ImageForm = () => {
   useProtect()
   const history = useHistory()
 
-  const {form, onChange, resetState}  = useForm({
+  const {form, onChange}  = useForm({
     subtitle: "",
     author: "", 
     date: Date, 
@@ -27,12 +27,6 @@ export const ImageForm = () => {
     onChange(name, value)
   }
   
-  const handleSubmittion = (event) =>{
-    event.preventDefault()
-    handleImageCreate()
-    resetState()
-  }
-
   const handleImageCreate = () => {
     const token = window.localStorage.getItem("token")
     axios
@@ -49,8 +43,8 @@ export const ImageForm = () => {
 
   return (
     <Box my={8} textAlign='left'>
-      <form onSubmit={handleSubmittion}>
-      <Stack>
+      <form>
+      <FormControl>
         <FormLabel>Subtitle</FormLabel>
         <Input 
         autoComplete="off" 
@@ -62,8 +56,8 @@ export const ImageForm = () => {
         placeholder="Enter your subtitle" 
         size="md" 
         />
-      </Stack>
-      <Stack mt={4}>
+      </FormControl>
+      <FormControl mt={4}>
         <FormLabel>Author</FormLabel>
         <Input 
         name="author" 
@@ -74,8 +68,8 @@ export const ImageForm = () => {
         placeholder="Enter your author" 
         size="md" 
         />
-      </Stack>
-      <Stack mt={4}>
+      </FormControl>
+      <FormControl mt={4}>
         <FormLabel>Date</FormLabel>
         <Input 
         name="date" 
@@ -86,8 +80,8 @@ export const ImageForm = () => {
         placeholder="Enter your date" 
         size="md" 
         />
-      </Stack>
-      <Stack mt={4}>
+      </FormControl>
+      <FormControl mt={4}>
         <FormLabel>File</FormLabel>
         <Input 
         name="file" 
@@ -98,8 +92,8 @@ export const ImageForm = () => {
         placeholder="Enter your file" 
         size="md" 
         />
-      </Stack>
-      <Stack mt={4}>
+      </FormControl>
+      <FormControl mt={4}>
         <FormLabel>Tags</FormLabel>
         <Input 
         name="tags" 
@@ -110,8 +104,8 @@ export const ImageForm = () => {
         placeholder="Enter your tag" 
         size="md" 
         />
-      </Stack>
-      <Stack mt={4}>
+      </FormControl>
+      <FormControl mt={4}>
         <FormLabel>Collection</FormLabel>
         <Input 
         name="collection" 
@@ -122,7 +116,7 @@ export const ImageForm = () => {
         placeholder="Enter your collection" 
         size="md" 
         />
-      </Stack>
+      </FormControl>
         <Button 
         type="submit" 
         onClick={handleImageCreate} 
