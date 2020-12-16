@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Badge, Image, Grid } from "@chakra-ui/react"
+import { Box, Badge, Img, Grid } from "@chakra-ui/react"
 
 
 export const AllImage = () => {
@@ -34,7 +34,10 @@ export const AllImage = () => {
               <Badge borderRadius="full" px="2" colorScheme="teal">
                 {img.subtitle}
               </Badge>
-              <Image src={img.file} mt="2" align="center"/>
+              <Box mt="2" align="center">
+                <Img src='https://i2.wp.com/marketingcomcafe.com.br/wp-content/uploads/2017/12/banco-imagens-gratis.png?fit=720%2C480&ssl=1' />
+                {/* {img.file} */}
+              </Box>
               <Box align="start" mt="2">
                 Author: {img.author}
               </Box>
