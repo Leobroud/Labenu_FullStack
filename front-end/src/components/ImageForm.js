@@ -54,19 +54,19 @@ export const ImageForm = () => {
 
 
   const handleImageCreate = (event) => {
-    event.preventDefault()
-
+  
     const token = window.localStorage.getItem("token")
     
     const body = {
       subtitle: subtitle,
       author: author,
       date: date,
+      file: url,
       tags: tags,
       collection: collection
     }
     axios
-      .post(`http://localhost:3003/image/create?file=${url}`, body, {
+      .post(`http://localhost:3003/image/create`, body, {
         headers:{
           Authorization: token
         }

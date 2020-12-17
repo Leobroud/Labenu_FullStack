@@ -35,8 +35,7 @@ export const AllImage = () => {
                 {img.subtitle}
               </Badge>
               <Box mt="2" align="center">
-                <Img src='https://i2.wp.com/marketingcomcafe.com.br/wp-content/uploads/2017/12/banco-imagens-gratis.png?fit=720%2C480&ssl=1' />
-                {/* {img.file} */}
+                <Img src={img.file} />
               </Box>
               <Box align="start" mt="2">
                 Author: {img.author}

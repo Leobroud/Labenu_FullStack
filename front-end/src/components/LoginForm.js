@@ -15,7 +15,7 @@ export const LoginForm = () => {
     const token = window.localStorage.getItem("token")
 
     if (token) {
-      history.push('/view')
+      history.push('/insert')
     }
   }, [history])
 
@@ -40,7 +40,7 @@ export const LoginForm = () => {
       .post('http://localhost:3003/user/login', form)
       .then(response => {
         localStorage.setItem("token", response.data.token)
-        history.push("/view")
+        history.push("/insert")
       }).catch(error => {
         console.log(error)
       })
