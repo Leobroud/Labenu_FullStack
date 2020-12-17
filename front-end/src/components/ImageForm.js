@@ -15,7 +15,6 @@ export const ImageForm = () => {
   const [ subtitle, setSubtitle] = useState("")
   const [ author, setAuthor] = useState("")
   const [ date, setDate] = useState("")
-  const [ file, setFile] = useState("")
   const [ url, setUrl] = useState("")
   const [ tags, setTags] = useState("")
   const [ collection, setCollection] = useState("")
@@ -33,7 +32,16 @@ export const ImageForm = () => {
   }
 
   const handleFileChange = (event) => {
-    setFile(event.target.files[0])
+    
+    const file = event.target.files[0]
+
+    const reader = new FileReader()
+
+    reader.readAsDataURL(file)
+
+    reader.onload = () => {
+      setUrl(reader.result)
+    }
   } 
 
   const handleTagsChange = (event) => {
@@ -44,45 +52,32 @@ export const ImageForm = () => {
     setCollection(event.target.value)
   }
 
-  const convertFile = (event) => {
+
+  const handleImageCreate = (event) => {
     event.preventDefault()
 
-    const reader = new FileReader()
-
-    reader.readAsDataURL(file)
-
-    reader.onload = () => {
-      setUrl(reader.result)
-    }
-  }
-
-  const handleImageCreate = () => {
-    
     const token = window.localStorage.getItem("token")
     
     const body = {
       subtitle: subtitle,
       author: author,
       date: date,
-      file: url,
       tags: tags,
       collection: collection
     }
     axios
-      .post('http://localhost:3003/image/create', body, {
+      .post(`http://localhost:3003/image/create?file=${url}`, body, {
         headers:{
           Authorization: token
         }
       })
       .then(response => {})
-      .catch(error => {
-        console.log(error)
-      })
+      .catch(error => {})
   }
 
   return (
     <Box my={8} textAlign='left'>
-      <form onSubmit={convertFile}>
+      <form >
       <FormControl>
         <FormLabel>Subtitle</FormLabel>
         <Input
