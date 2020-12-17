@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
-import useForm from '../hooks/useForm';
 import { Input, Box, FormLabel, FormControl } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
 import { useProtect } from '../hooks/useProtect'
@@ -13,24 +12,64 @@ export const ImageForm = () => {
   useProtect()
   const history = useHistory()
 
-  const {form, onChange}  = useForm({
-    subtitle: "",
-    author: "", 
-    date: Date, 
-    file: "", 
-    tags: "", 
-    collection: ""
-  })
+  const [ subtitle, setSubtitle] = useState("")
+  const [ author, setAuthor] = useState("")
+  const [ date, setDate] = useState("")
+  const [ file, setFile] = useState("")
+  const [ url, setUrl] = useState("")
+  const [ tags, setTags] = useState("")
+  const [ collection, setCollection] = useState("")
 
-  const handleInputChange = (event) =>{
-    const { name, value } = event.target
-    onChange(name, value)
+  const handleSubtitleChange = (event) => {
+    setSubtitle(event.target.value)
   }
-  
+
+  const handleAuthorChange = (event) => {
+    setAuthor(event.target.value)
+  }
+
+  const handleDateChange = (event) => {
+    setDate(event.target.value)
+  }
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0])
+  } 
+
+  const handleTagsChange = (event) => {
+    setTags(event.target.value)
+  }
+
+  const handleCollectionChange = (event) => {
+    setCollection(event.target.value)
+  }
+
+  const convertFile = (event) => {
+    event.preventDefault()
+
+    const reader = new FileReader()
+
+    reader.readAsDataURL(file)
+
+    reader.onload = () => {
+      setUrl(reader.result)
+    }
+  }
+
   const handleImageCreate = () => {
+    
     const token = window.localStorage.getItem("token")
+    
+    const body = {
+      subtitle: subtitle,
+      author: author,
+      date: date,
+      file: url,
+      tags: tags,
+      collection: collection
+    }
     axios
-      .post('http://localhost:3003/image/create', form, {
+      .post('http://localhost:3003/image/create', body, {
         headers:{
           Authorization: token
         }
@@ -43,14 +82,12 @@ export const ImageForm = () => {
 
   return (
     <Box my={8} textAlign='left'>
-      <form>
+      <form onSubmit={convertFile}>
       <FormControl>
         <FormLabel>Subtitle</FormLabel>
-        <Input 
-        autoComplete="off" 
-        name="subtitle" 
-        value={form.subtitle} 
-        onChange={handleInputChange} 
+        <Input
+        value={subtitle} 
+        onChange={handleSubtitleChange} 
         type="text"
         required 
         placeholder="Enter your subtitle" 
@@ -59,10 +96,9 @@ export const ImageForm = () => {
       </FormControl>
       <FormControl mt={4}>
         <FormLabel>Author</FormLabel>
-        <Input 
-        name="author" 
-        value={form.author} 
-        onChange={handleInputChange} 
+        <Input
+        value={author} 
+        onChange={handleAuthorChange} 
         type="text"
         required
         placeholder="Enter your author" 
@@ -72,9 +108,8 @@ export const ImageForm = () => {
       <FormControl mt={4}>
         <FormLabel>Date</FormLabel>
         <Input 
-        name="date" 
-        value={form.date} 
-        onChange={handleInputChange} 
+        value={date} 
+        onChange={handleDateChange} 
         type="date"
         required
         placeholder="Enter your date" 
@@ -83,10 +118,8 @@ export const ImageForm = () => {
       </FormControl>
       <FormControl mt={4}>
         <FormLabel>File</FormLabel>
-        <Input 
-        name="file" 
-        value={form.file} 
-        onChange={handleInputChange} 
+        <Input
+        onChange={handleFileChange} 
         type="file"
         required 
         placeholder="Enter your file" 
@@ -96,9 +129,8 @@ export const ImageForm = () => {
       <FormControl mt={4}>
         <FormLabel>Tags</FormLabel>
         <Input 
-        name="tags" 
-        value={form.tags} 
-        onChange={handleInputChange} 
+        value={tags} 
+        onChange={handleTagsChange} 
         type="text"
         required 
         placeholder="Enter your tag" 
@@ -107,10 +139,9 @@ export const ImageForm = () => {
       </FormControl>
       <FormControl mt={4}>
         <FormLabel>Collection</FormLabel>
-        <Input 
-        name="collection" 
-        value={form.collection} 
-        onChange={handleInputChange} 
+        <Input
+        value={collection} 
+        onChange={handleCollectionChange} 
         type="text"
         required 
         placeholder="Enter your collection" 
