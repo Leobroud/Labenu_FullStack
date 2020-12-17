@@ -6,9 +6,8 @@ import bodyParser from 'body-parser'
 const app = express()
 
 app.use(cors())
-app.use(express.json())
-app.use(express.json({limit: "500mb"}))
-app.use(bodyParser.urlencoded({limit: '500mb', extended: true}))
+app.use(express.json({limit: "900mb"}))
+app.use(bodyParser.urlencoded({limit: '900mb', extended: true}))
 app.use(routes)
 
 

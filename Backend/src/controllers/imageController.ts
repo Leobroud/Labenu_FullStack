@@ -28,9 +28,9 @@ class imageController {
     try {
       let message = "Success!"
 
-      const { subtitle, author, date, tags, collection } = req.body
+      const { subtitle, author, date, file, tags, collection } = req.body
 
-      const file = req.query.file
+      // const file = req.query.file
 
       const token: string = req.headers.authorization as string
 
