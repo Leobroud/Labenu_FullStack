@@ -10,7 +10,7 @@ class imageController {
     try { 
 
       const image = await knex('IMAGES').select('*')
-      console.log(image)
+      
       return res.status(200).json(image)
 
     }catch(error) {
@@ -29,8 +29,6 @@ class imageController {
       let message = "Success!"
 
       const { subtitle, author, date, file, tags, collection } = req.body
-
-      // const file = req.query.file
 
       const token: string = req.headers.authorization as string
 
