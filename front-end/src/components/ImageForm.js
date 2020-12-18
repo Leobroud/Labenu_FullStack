@@ -79,7 +79,7 @@ export const ImageForm = () => {
     <Box my={8} textAlign='left'>
       <form >
       <FormControl>
-        <FormLabel>Subtitle</FormLabel>
+        <FormLabel>Title</FormLabel>
         <Input
         value={subtitle} 
         onChange={handleSubtitleChange} 
